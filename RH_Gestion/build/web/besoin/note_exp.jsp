@@ -4,39 +4,73 @@
     Author     : HERINIAINA
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Notation Expérience</title>
-    </head>
-    <body>
-        <h1>Notation Expérience</h1>
-        <form action='#' method="post">
-        <table>
-            <tr>
-                <th>Minimum</th>
-                <th>Maximum</th>
-                <th>Note</th>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>2</td>
-                <td><input type="number" name='note_+index_exp'></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>5</td>
-                <td><input type="number" name='note_+index_exp'></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>10</td>
-                <td><input type="number" name='note_+index_exp'></td>
-            </tr>
-        </table>
-            <button type="submit">Valider</button>
-        </form>
-    </body>
-</html>
+<div class="card">
+    <div class="card-body">
+      <h2 class="card-title fw-semibold mb-4" id="main-title">
+        Notation exp�rience
+      </h2>
+      <div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-lg-4">
+                <label for="poste-horaire-input" class="form-label"> 
+                  Minimum
+                </label>
+              </div>
+              <div class="col-lg-4">
+                <label for="poste-horaire-input" class="form-label">
+                  Maximum
+                </label>
+              </div>
+              <div class="col-lg-4">
+                <label for="poste-horaire-input" class="form-label">
+                  Note
+                </label>
+              </div>
+            </div>
+
+            <div class="row critere-poste-line">
+              <div class="col-lg-4">
+                <input type="text" min="0" class="form-control input-formulaire" value="0" readonly>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" min="0" class="form-control input-formulaire" value="3" readonly>
+              </div>
+              <div class="col-lg-4">
+                <input type="number" min="0" class="form-control input-formulaire">
+              </div>
+            </div>
+
+            <div class="row critere-poste-line">
+                <div class="col-lg-4">
+                  <input type="text" min="0" class="form-control input-formulaire" value="3" readonly>
+                </div>
+                <div class="col-lg-4">
+                  <input type="text" min="0" class="form-control input-formulaire" value="5" readonly>
+                </div>
+                <div class="col-lg-4">
+                  <input type="number" min="0" class="form-control input-formulaire">
+                </div>
+            </div>
+
+            <div class="row critere-poste-line">
+                <div class="col-lg-4">
+                  <input type="text" min="0" class="form-control input-formulaire" value="5" readonly>
+                </div>
+                <div class="col-lg-4">
+                  <input type="text" min="0" class="form-control input-formulaire" value="7" readonly>
+                </div>
+                <div class="col-lg-4">
+                  <input type="number" min="0" class="form-control input-formulaire">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-validation-critere">
+              Suivant
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
