@@ -98,7 +98,7 @@ CREATE TABLE notation_exp(
 
 CREATE TABLE notation_s_mat(
     id_note_s_mat SERIAL PRIMARY KEY,
-    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_matrimo),
     id_besoin INT REFERENCES besoin(id_besoin),
     note INT DEFAULT 0
 );
