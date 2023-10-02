@@ -10,5 +10,8 @@ package service.besoin;
  * @author HERINIAINA
  */
 public class Nationalite {
-    
+    int id;
+    String désignation;
+    int niveau;
+    double note;
 }
