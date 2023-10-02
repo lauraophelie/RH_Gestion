@@ -31,7 +31,7 @@ CREATE TABLE services(
     id_service SERIAL PRIMARY KEY,
     nom_service VARCHAR(30),
     id_dept INT REFERENCES departement(id_dept),
-    id_domaine REFERENCES domaine(id_domaine)  
+    id_domaine INT REFERENCES domaine(id_domaine)  
 );
 
 CREATE TABLE poste(
