@@ -34,6 +34,8 @@ public class InsertBesoinServlet extends HttpServlet {
         String idExperience = request.getParameter("experience");
         String idNationalite = request.getParameter("nationalite");
         String idDiplome = request.getParameter("diplome");
+        String minAge = request.getParameter("minAge");
+        String maxAge = request.getParameter("maxAge");
         
         //Adresse adresse = new Adresse(idAdresse);
         
