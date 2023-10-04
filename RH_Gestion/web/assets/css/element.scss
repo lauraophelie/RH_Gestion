@@ -1,0 +1,45 @@
+/*----------------------*/
+
+@mixin border-radius($value) {
+    border-radius: $value;
+}
+
+@mixin formulaire-title($padding-left, $padding-top, $font-size: 20px) {
+    padding-left: $padding-left;
+    padding-top: $padding-top;
+    font-size: 20px;
+}
+
+@mixin btn-min-style($btn-width, $margin-left, $btn-height: 35px, $border-min-radius: 0px, $margin-top: 40px) {
+    @include border-radius($border-min-radius);
+    width: $btn-width;
+    height: $btn-height;
+    margin-top: $margin-top;
+    margin-left: $margin-left;
+}
+
+/*---------------------*/
+
+.btn-formulaire {
+    @include btn-min-style(125px, 88%);
+    margin-top: 40px;
+}
+
+.input-formulaire {
+    @include border-radius(0px);
+}
+
+#main-title {
+    @include formulaire-title(28px, 27px);
+}
+
+
+
+.critere-poste-line {
+    margin-top: 25px;
+}
+
+.btn-validation-critere {
+    @include btn-min-style(125px, 88%);
+    margin-top: 25px;
+}
