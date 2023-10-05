@@ -156,3 +156,34 @@ CREATE TABLE critere_adresse(
 );
 
 ----------------------------------------------
+ALTER TABLE critere_adresse ADDCOLUMN id_besoin INT REFERENCES besoin(id_besoin);
+
+CREATE TABLE critere_age(
+    id_cri_age SERIAL PRIMARY KEY,
+    minimum INT NOT NULL DEFAULT 18,
+    maximum INT NOT NULL DEFAULT 45,
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+----------------------------------------------
+
+CREATE TABLE personne(
+    id_personne SERIAL PRIMARY KEY,
+    nom VARCHAR(30),
+    prenom VARCHAR(30),
+    date_naissance DATE
+);
+
+CREATE TABLE employe(
+    id_emp SERIAL PRIMARY KEY,
+    id_personne INT REFERENCES personne(id_personne),
+    date_embauche DATE
+);
+
+CREATE TABLE candidature(
+    id_candidature SERIAL PRIMARY KEY,
+    date_candidature DATE,
+    id_besoin INT REFERENCES besoin(id_besoin),
+    id_personne INT REFERENCES personne(id_personne)
+);
