@@ -65,4 +65,7 @@ public class Diplome {
     public void save(){
         DiplomeDAO.save(this);
     }
+    public static Diplome[] findAll() throws Exception {
+        return DiplomeDAO.findAll();
+    }
 }

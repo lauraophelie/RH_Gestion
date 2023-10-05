@@ -5,12 +5,17 @@
  */
 package controller.besoin;
 
+import dao.besoin.DiplomeDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.besoin.Diplome;
+import service.besoin.Experience;
+import service.besoin.Nationalite;
+import service.besoin.SMatrimoniale;
 
 /**
  *
@@ -28,8 +33,25 @@ public class CreateBesoinServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException{
+        try{
+            Diplome[] diplome = Diplome.findAll();
+            Experience[] experience = Experience.findAll();
+            SMatrimoniale[] sMatrimoniale = SMatrimoniale.findAll();
+            Nationalite[] nationalite = Nationalite.findAll();
+
+            request.setAttribute("diplomes", diplome);
+            request.setAttribute("experiences", experience);
+            request.setAttribute("smatrimoniales", sMatrimoniale);
+            request.setAttribute("nationalites", nationalite);
+            
+            RequestDispatcher dispat = request.getRequestDispatcher("besoin/ajout_besoin.jsp");
+            dispat.forward(request,response);
+        }
+        catch(Exception e){
+            System.out.println("Error : " + e);
+            e.printStackTrace(System.out);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

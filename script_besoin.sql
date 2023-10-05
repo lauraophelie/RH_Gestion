@@ -187,3 +187,36 @@ CREATE TABLE candidature(
     id_besoin INT REFERENCES besoin(id_besoin),
     id_personne INT REFERENCES personne(id_personne)
 );
+
+-------------------------------------------------------------
+
+CREATE TABLE mission(
+    id_mission SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE mission_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_mission INT REFERENCES mission(id_mission)
+);
+
+CREATE TABLE tache(
+    id_tache SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE tache_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_tache INT REFERENCES tache(id_tache)
+);
+
+ALTER TABLE poste ADDCOLUMN droit DOUBLE PRECISION NOT NULL;
+
+-------------------------------------------------------------
+
+CREATE TABLE fiche_poste(
+    id_fiche_poste SERIAL PRIMARY KEY,
+    id_poste REFERENCES poste(id_poste),
+    date_debut DATE NOT NULL,
+    date_fin DATE DEFAULT NULL
+);
