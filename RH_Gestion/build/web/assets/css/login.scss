@@ -1,0 +1,5 @@
+@import "element";
+
+#login-title {
+    @include formulaire-title(25%, 50px);
+}

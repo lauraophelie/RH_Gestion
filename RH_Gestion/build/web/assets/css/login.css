@@ -1,0 +1,39 @@
+/*----------------------*/
+/*---------------------*/
+.btn-formulaire {
+  border-radius: 0px;
+  width: 125px;
+  height: 35px;
+  margin-top: 40px;
+  margin-left: 88%;
+  margin-top: 40px;
+}
+
+.input-formulaire {
+  border-radius: 0px;
+}
+
+#main-title {
+  padding-left: 28px;
+  padding-top: 27px;
+  font-size: 20px;
+}
+
+.critere-poste-line {
+  margin-top: 25px;
+}
+
+.btn-validation-critere {
+  border-radius: 0px;
+  width: 125px;
+  height: 35px;
+  margin-top: 40px;
+  margin-left: 88%;
+  margin-top: 25px;
+}
+
+#login-title {
+  padding-left: 25%;
+  padding-top: 50px;
+  font-size: 20px;
+}/*# sourceMappingURL=login.css.map */
