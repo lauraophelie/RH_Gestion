@@ -1,5 +1,13 @@
 @import "element";
 
 #login-title {
-    @include formulaire-title(25%, 50px);
+    @include formulaire-title(0%, 30px);
+}
+
+.login-input {
+    @include border-radius(0px);
+}
+
+.submit-button-login {
+    @include border-radius(0px);
 }
