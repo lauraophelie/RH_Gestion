@@ -15,6 +15,9 @@ CREATE view v_besoin_matrimoniale as (select s_matrimoniale.id_s_matrimo,s_matri
 --view besoin experience avec note et niveau
 CREATE view v_besoin_experience as (select experience.id_exp,experience.minimum,experience.maximum,experience.niveau,notation_exp.id_besoin,notation_exp.note from notation_exp join experience on experience.id_exp=notation_exp.id_exp);
 
+-- view besoin diplome
+CREATE view v_annonce as (select v_besoin_experience.id_exp,v_besoin_experience.minimum,v_besoin_experience.maximum,v_besoin_experience.niveau as niveau_experience,v_besoin_experience.note as note_experience,v_besoin_experience.id_besoin,v_besoin_diplome.id_diplome,v_besoin_diplome.niveau as niveau_diplome,v_besoin_diplome.designation,v_besoin_diplome.note as note_diplome from v_besoin_experience join v_besoin_diplome on v_besoin_experience.id_besoin=v_besoin_diplome.id_besoin);
+
 
 
 
