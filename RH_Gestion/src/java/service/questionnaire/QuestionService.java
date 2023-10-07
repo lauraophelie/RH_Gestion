@@ -17,15 +17,16 @@ import model.questionnaire.Questionnaire;
 public class QuestionService {
    protected QuestionDAO dao = new QuestionDAO();
    
-   public List<Question> findAllByQuestionnaire(Questionnaire questionnaire) {
+   public List<Question> findAllByQuestionnaire(Questionnaire questionnaire) throws Exception {
         return dao.findAllByQuestionnaire(questionnaire);
     }
     
-    public Question findById(int id) {
+    public Question findById(int id) throws Exception {
         return dao.findById(id);
     }
+
     
-    public Question save(Question question) {
+    public Question save(Question question) throws Exception {
         return dao.save(question);
     }
 }

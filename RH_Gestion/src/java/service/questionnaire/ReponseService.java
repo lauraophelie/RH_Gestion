@@ -17,11 +17,11 @@ import model.questionnaire.Reponse;
 public class ReponseService {
     protected ReponseDAO dao = new ReponseDAO();
     
-    public List<Reponse> findAllByQuestion(Question question) {
+    public List<Reponse> findAllByQuestion(Question question) throws Exception {
         return dao.findAllByQuestion(question);
     }
     
-    public Reponse save(Reponse reponse) {
+    public Reponse save(Reponse reponse) throws Exception {
         return dao.save(reponse);
     }
 }

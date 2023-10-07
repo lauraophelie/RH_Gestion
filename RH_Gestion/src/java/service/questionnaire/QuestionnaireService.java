@@ -16,11 +16,11 @@ public class QuestionnaireService {
     
     protected QuestionnaireDAO dao = new QuestionnaireDAO();
     
-    public Questionnaire findById(int id) {
+    public Questionnaire findById(int id) throws Exception {
         return dao.findById(id);
     }
     
-    public Questionnaire save(Questionnaire quest) {
+    public Questionnaire save(Questionnaire quest) throws Exception {
         return dao.save(quest);
     }
 }
