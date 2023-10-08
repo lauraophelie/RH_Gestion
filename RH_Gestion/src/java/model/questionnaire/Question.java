@@ -89,4 +89,10 @@ public class Question {
         this.setNombrePoint(nombrePoint);
         this.setReponses(reponses);
     }
+
+    @Override
+    public String toString() {
+        return "Question{" + "questionnaire=" + questionnaire + ", numeroQuestion=" + numeroQuestion + ", question=" + question + ", nombrePoint=" + nombrePoint + ", reponses=" + reponses + '}';
+    }
+    
 }

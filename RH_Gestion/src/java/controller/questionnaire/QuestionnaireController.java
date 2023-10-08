@@ -7,10 +7,15 @@ package controller.questionnaire;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.questionnaire.Questionnaire;
+import service.besoin.Besoin;
+import service.questionnaire.QuestionnaireService;
 
 /**
  *
@@ -70,7 +75,24 @@ public class QuestionnaireController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String besoinReq = request.getParameter("besoin");
+            
+            System.out.println(besoinReq);
+            
+            int idBesoin = Integer.parseInt(besoinReq);
+            
+            Questionnaire quest = new Questionnaire();
+            Besoin besoin = new Besoin();
+            
+            besoin.setId(idBesoin);
+            quest.setBesoin(besoin);
+            
+            QuestionnaireService questionnaire = new QuestionnaireService();
+            quest = questionnaire.save(quest);
+        } catch (Exception ex) {
+            Logger.getLogger(QuestionnaireController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

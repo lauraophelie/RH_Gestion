@@ -54,4 +54,9 @@ public class Reponse {
         this.setReponse(reponse);
         this.setSolution(solution);
     }
+
+    @Override
+    public String toString() {
+        return "Reponse{" + "numeroReponse=" + numeroReponse + ", reponse=" + reponse + ", solution=" + solution + '}';
+    }
 }

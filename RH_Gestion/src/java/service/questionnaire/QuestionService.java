@@ -24,9 +24,16 @@ public class QuestionService {
     public Question findById(int id) throws Exception {
         return dao.findById(id);
     }
-
     
     public Question save(Question question) throws Exception {
         return dao.save(question);
+    }
+    
+    public Question lastQuestion() throws Exception {
+        return dao.lastQuestion();
+    }
+    
+    public Question saveQuestionnaire(Question quest) throws Exception {
+        return dao.saveQuestionnaire(quest);
     }
 }

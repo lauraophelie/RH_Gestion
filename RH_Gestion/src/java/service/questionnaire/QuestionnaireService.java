@@ -21,6 +21,10 @@ public class QuestionnaireService {
     }
     
     public Questionnaire save(Questionnaire quest) throws Exception {
-        return dao.save(quest);
+         return dao.save(quest);
+    }
+    
+    public Questionnaire lastQuestionnaire() throws Exception {
+        return dao.lastQuestionnaire();
     }
 }

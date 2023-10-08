@@ -62,6 +62,27 @@ public class ReponseDAO {
         return liste;
     }
     
+    public Reponse save(Connection connect, Reponse reponse) throws Exception {
+        PreparedStatement statement = null;
+        
+        try{
+            statement = connect.prepareStatement("insert into reponse(id_question, numero_reponse, reponse, solution) values(?, ?, ?, ?)");
+            statement.setInt(1, reponse.getQuestion().getId());
+            statement.setInt(2, reponse.getNumeroReponse());
+            statement.setString(3, reponse.getReponse());
+            statement.setBoolean(4, reponse.isSolution());
+            
+            statement.executeUpdate();
+        } catch(SQLException e){
+            throw e;
+        } finally{
+            if(statement != null){
+                statement.close();
+            }
+        }
+        return reponse;
+    }
+    
     public Reponse save(Reponse reponse) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
