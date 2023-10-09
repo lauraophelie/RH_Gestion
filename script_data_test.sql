@@ -31,3 +31,30 @@ INSERT INTO besoin(id_poste, nombre, date_demande, date_limite) VALUES
                     (1, 25, now(), '2023-10-16');
 
 ----------
+
+--------------------------------- 09/10/23 ---------------------------------------
+
+INSERT INTO diplome(niveau, designation) VALUES
+                    (1, 'CEPE'),
+                    (2, 'BEPC'),
+                    (3, 'BACC'),
+                    (4, 'License'),
+                    (5, 'Master'),
+                    (6, 'Doctorat');
+
+
+INSERT INTO nationalite(niveau, designation) VALUES
+                    (1, 'Autre'),
+                    (2, 'Malagasy');
+
+
+INSERT INTO s_matrimoniale(niveau, designation) VALUES
+                    (1, 'Célibataire'),
+                    (2, 'Divorcé'),
+                    (3, 'Marié'),
+                    (4, 'Veuf');
+
+INSERT INTO experience(minimum, maximum, niveau) VALUES
+                        (1, 3, 1),
+                        (3, 5, 2),
+                        (5, 10, 3);

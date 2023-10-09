@@ -48,6 +48,10 @@
         <servlet-name>SetNoteSMaritialeServlet</servlet-name>
         <servlet-class>controller.besoin.SetNoteSMaritialeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UtilisateurController</servlet-name>
+        <servlet-class>controller.utilisateur.UtilisateurController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InsertBesoinServlet</servlet-name>
         <url-pattern>/InsertBesoin</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>SetNoteSMaritialeServlet</servlet-name>
         <url-pattern>/SetNoteSMaritiale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UtilisateurController</servlet-name>
+        <url-pattern>/Utilisateur</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

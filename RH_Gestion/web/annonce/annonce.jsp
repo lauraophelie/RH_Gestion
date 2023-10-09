@@ -6,7 +6,6 @@
       
               <div class="section-title">
                 <h2> Annonces </h2>
-                <!---------<p>Check out our beautiful portfolio</p>-----------------> 
               </div>
       
               <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -30,7 +29,6 @@
 
                 <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                   <div class="portfolio-wrap">
-                    <!---------<img src="../../assets/template-2-assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">--->
                     <div class="poste-card">
                       
                     </div>
@@ -47,7 +45,7 @@
                   </div>
                 </div>
       
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <!--<div class="col-lg-4 col-md-6 portfolio-item filter-web">
                   <div class="portfolio-wrap">
                     <img src="../assets/template-2-assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
                     <div class="portfolio-links">
@@ -157,7 +155,7 @@
                       <p>Web</p>
                     </div>
                   </div>
-                </div>
+                </div>--->
       
               </div>
       
