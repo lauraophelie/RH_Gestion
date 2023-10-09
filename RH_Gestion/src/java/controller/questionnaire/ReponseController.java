@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -18,10 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.questionnaire.Question;
 import model.questionnaire.Questionnaire;
-import model.questionnaire.Reponse;
 import service.questionnaire.QuestionService;
 import service.questionnaire.QuestionnaireService;
-import service.questionnaire.ReponseService;
 
 
 /**

@@ -15,6 +15,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../assets/template-1-assets/css/styles.min.css">
         <link rel="stylesheet" href="../assets/css/element.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+        <link href="../assets/template-2-assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="../assets/template-2-assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/template-2-assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="../assets/template-2-assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="../assets/template-2-assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="../assets/template-2-assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="../assets/template-2-assets/css/style.css" rel="stylesheet">
+
         <title> Ressources Humaines </title>
     </head>
     <body>
@@ -72,5 +84,17 @@
       <script src="../assets/template-1-assets/js/sidebarmenu.js"></script>
       <script src="../assets/template-1-assets/js/app.min.js"></script>
       <script src="../assets/template-1-assets/libs/simplebar/dist/simplebar.js"></script>
+
+      <script src="../assets/js/questionnaire.js"> </script>
+      <script src="../assets/js/reponses.js"> </script>
+
+      <script src="../assets/template-2-assets/vendor/aos/aos.js"></script>
+      <script src="../assets/template-2-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="../assets/template-2-assets/vendor/glightbox/js/glightbox.min.js"></script>
+      <script src="../assets/template-2-assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+      <script src="../assets/template-2-assets/vendor/swiper/swiper-bundle.min.js"></script>
+      <script src="../assets/template-2-assets/vendor/php-email-form/validate.js"></script>
+
+      <script src="../assets/template-2-assets/js/main.js"> </script>
     </body>
 </html>
