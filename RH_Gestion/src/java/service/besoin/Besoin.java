@@ -5,12 +5,18 @@
  */
 package service.besoin;
 
+import dao.besoin.BesoinDAO;
+import service.societe.Poste;
+import service.societe.Service;
+
 /**
  *
  * @author HERINIAINA
  */
 public class Besoin {
     private int id;
+    private Service service;
+    private Poste poste;
     private Diplome diplome;
     private Adresse adresse;
     private SMatrimoniale sMaritiale;
@@ -18,6 +24,8 @@ public class Besoin {
     private Nationalite nationalite;
     private double volumeTache;
     private Unite unite;
+    private int agemin;
+    private int agemax;
 
     public int getId() {
         return id;
@@ -83,21 +91,34 @@ public class Besoin {
         this.unite = unite;
     }
     
+    public int getAgemin() {
+        return agemin;
+    }
+
+    public void setAgemin(int agemin) {
+        this.agemin = agemin;
+    }
+
+    public int getAgemax() {
+        return agemax;
+    }
+
+    public void setAgemax(int agemax) {
+        this.agemax = agemax;
+    }
+    
     public Besoin(){}
     
-    public Besoin(String idDiplome, String adresse, String idSMAritiale, String idExperience, String idNationalite, String volumeTache, String unite){
-        
-    }
-    
     public Besoin(int id){
-
+        setId(id);
     }
     public Besoin(String id){
-
+        int newId = Integer.parseInt(id);
+        setId(newId);
     }
 
-    public void save(){
-
+    public void save() throws Exception{
+        BesoinDAO.save(this);
     }
-
+    
 }

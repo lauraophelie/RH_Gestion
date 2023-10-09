@@ -5,11 +5,14 @@
  */
 package service.besoin;
 
+import dao.besoin.ExperienceDAO;
+
 /**
  *
  * @author HERINIAINA
  */
 public class Experience {
+
     private int id;
     private String désignation;
     private int niveau;
@@ -70,5 +73,9 @@ public class Experience {
 
     public void setNote(double note) {
         this.note = note;
+    }
+    
+    public static Experience[] findAll() {
+        return ExperienceDAO.findAll();
     }
 }

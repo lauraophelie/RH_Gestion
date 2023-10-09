@@ -31,7 +31,7 @@ CREATE TABLE services(
     id_service SERIAL PRIMARY KEY,
     nom_service VARCHAR(30),
     id_dept INT REFERENCES departement(id_dept),
-    id_domaine REFERENCES domaine(id_domaine)  
+    id_domaine INT REFERENCES domaine(id_domaine)  
 );
 
 CREATE TABLE poste(
@@ -98,7 +98,7 @@ CREATE TABLE notation_exp(
 
 CREATE TABLE notation_s_mat(
     id_note_s_mat SERIAL PRIMARY KEY,
-    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_matrimo),
     id_besoin INT REFERENCES besoin(id_besoin),
     note INT DEFAULT 0
 );
@@ -186,4 +186,37 @@ CREATE TABLE candidature(
     date_candidature DATE,
     id_besoin INT REFERENCES besoin(id_besoin),
     id_personne INT REFERENCES personne(id_personne)
+);
+
+-------------------------------------------------------------
+
+CREATE TABLE mission(
+    id_mission SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE mission_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_mission INT REFERENCES mission(id_mission)
+);
+
+CREATE TABLE tache(
+    id_tache SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE tache_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_tache INT REFERENCES tache(id_tache)
+);
+
+ALTER TABLE poste ADDCOLUMN droit DOUBLE PRECISION NOT NULL;
+
+-------------------------------------------------------------
+
+CREATE TABLE fiche_poste(
+    id_fiche_poste SERIAL PRIMARY KEY,
+    id_poste REFERENCES poste(id_poste),
+    date_debut DATE NOT NULL,
+    date_fin DATE DEFAULT NULL
 );
