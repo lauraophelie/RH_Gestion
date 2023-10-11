@@ -137,7 +137,7 @@ CREATE TABLE critere_exp(
 
 CREATE TABLE critere_s_mat(
     id_cri_s_mat SERIAL PRIMARY KEY,
-    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
+    id_s_matrimo INT REFERENCES s_matrimoniale(id_s_matrimo),
     id_besoin INT REFERENCES besoin(id_besoin),
     coeff INT DEFAULT 1
 );
@@ -156,7 +156,7 @@ CREATE TABLE critere_adresse(
 );
 
 ----------------------------------------------
-ALTER TABLE critere_adresse ADDCOLUMN id_besoin INT REFERENCES besoin(id_besoin);
+ALTER TABLE critere_adresse ADD COLUMN id_besoin INT REFERENCES besoin(id_besoin);
 
 CREATE TABLE critere_age(
     id_cri_age SERIAL PRIMARY KEY,
@@ -173,12 +173,6 @@ CREATE TABLE personne(
     nom VARCHAR(30),
     prenom VARCHAR(30),
     date_naissance DATE
-);
-
-CREATE TABLE employe(
-    id_emp SERIAL PRIMARY KEY,
-    id_personne INT REFERENCES personne(id_personne),
-    date_embauche DATE
 );
 
 CREATE TABLE candidature(
@@ -220,3 +214,25 @@ CREATE TABLE fiche_poste(
     date_debut DATE NOT NULL,
     date_fin DATE DEFAULT NULL
 );
+
+CREATE TABLE cv(
+    id_personne INT REFERENCES personne(id_personne),
+    id_diplome INT REFERENCES diplome(id_diplome),
+    id_exp INT REFERENCES experience(id_exp),
+    id_nat INT REFERENCES nationalite(id_nat),
+    id_s_matrimo INT REFERENCES s_matrimoniale(id_s_matrimo)     
+);
+
+CREATE TABLE employe(
+    id_emp SERIAL PRIMARY KEY,
+    id_personne INT REFERENCES personne(id_personne),
+    date_embauche DATE
+);
+----------------------------------------------------------------
+
+insert into nationalite(niveau,designation) values(1,'Malagasy'),(2,'Autres');
+insert into s_matrimoniale(niveau,designation) values(0,'Célibataire'),(1,'Marié'),(2,'Veuf'),(3,'Divorcé');
+insert into experience(minimum,maximum,niveau) values(0,0,0),(0,2,1),(2,5,2),(5,10,3);
+insert into diplome(niveau,designation) values(0,'Aucun'),(1,'CEPE'),(2,'BEPC'),(3,'Bacc'),(4,'Licence'),(5,'Master'),(6,'Doctorat');
+
+----------------------------------------------------------------

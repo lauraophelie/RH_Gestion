@@ -5,7 +5,11 @@
  */
 package dao.besoin;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.List;
 import service.besoin.Experience;
+import util.Util;
 
 /**
  *
@@ -13,8 +17,31 @@ import service.besoin.Experience;
  */
 public class ExperienceDAO {
 
-    public static Experience[] findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static List<Experience> findAll() {
+        return null;
+    }
+
+    public static void saveCritere(Experience experience, int id) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = Util.connect();
+            statement = connection.prepareStatement("Insert into critere_age(maximum,minimum,coeff,id_besoin) values(?,?,?,?)");
+            statement.setInt(1, experience.getMaximum());
+            statement.setInt(2, experience.getMinimum());
+            statement.setInt(3, experience.getCoeff());
+            statement.setInt(4, id);
+            statement.executeUpdate();
+        } catch(Exception e){
+            throw e;
+        } finally{
+            if(statement != null){
+                statement.close();
+            }
+            if(connection != null){
+                connection.close();
+            }
+        }    
     }
     
 }

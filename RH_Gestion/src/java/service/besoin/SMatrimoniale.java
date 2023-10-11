@@ -16,6 +16,7 @@ public class SMatrimoniale {
     private String désignation;
     private int niveau;
     private double note;
+    private int coeff;
 
     public int getId() {
         return id;
@@ -48,17 +49,33 @@ public class SMatrimoniale {
     public void setNote(double note) {
         this.note = note;
     }
-    
+
     // constructeur
     public SMatrimoniale() {}
+    public int getCoeff() {
+        return coeff;
+    }
+
+    public void setCoeff(int coeff) {
+        this.coeff = coeff;
+    }
     public SMatrimoniale(int id){
         setId(id);
     }
     public SMatrimoniale(String id) throws Exception{
         int newId = Integer.parseInt(id);
-        
+        setId(newId);
     }
-    public static SMatrimoniale[] findAll() throws Exception {
+    
+    public static SMatrimoniale[] findAll() {
         return SMatrimonialeDAO.findAll();
     }
+    
+    public SMatrimoniale(String idSMaritial, String coeffMaritial) {
+        int newId = Integer.parseInt(idSMaritial);
+        setId(newId);
+        int coeff = Integer.parseInt(coeffMaritial);
+        setCoeff(coeff);
+    }
+    
 }
