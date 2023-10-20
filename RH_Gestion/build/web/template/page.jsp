@@ -24,7 +24,6 @@
         <link href="../assets/template-2-assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="../assets/template-2-assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-        <!-- Template Main CSS File -->
         <link href="../assets/template-2-assets/css/style.css" rel="stylesheet">
 
         <title> Ressources Humaines </title>
@@ -52,9 +51,17 @@
                         <span>
                           <i class="ti ti-layout-dashboard"></i>
                         </span>
-                        <span class="hide-menu"> Services </span>
+                        <span class="hide-menu"> Postes </span>
                       </a>
                     </li>
+                    <!--<li class="sidebar-item">
+                      <a class="sidebar-link" href="./page.jsp?page=poste/poste" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu"> Annonces </span>
+                      </a>
+                    </li>-->
                   </ul>
                 </nav>
               </div>

@@ -21,7 +21,7 @@ public class AnnonceDAO {
                 size++; 
             } 
             connection.close();
-        } catch(Exception e) { 
+        } catch(SQLException e) { 
            System.out.println(e);
         } 
         return size;
