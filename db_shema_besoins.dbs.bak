@@ -226,9 +226,6 @@
 			<index name="pk_notation_adresse_id_note_adr" unique="PRIMARY_KEY" >
 				<column name="id_note_adr" />
 			</index>
-			<fk name="fk_notation_adresse_besoin" to_schema="Default" to_table="besoin" >
-				<fk_column name="id_besoin" pk="id_besoin" />
-			</fk>
 		</table>
 		<table name="notation_diplome" >
 			<column name="id_note_dip" type="serial" jt="4" mandatory="y" />
@@ -362,9 +359,12 @@
 		</table>
 	</schema>
 	<layout name="Parsed Script Layout" id="Layout_1391303" show_relation="columns" >
+		<entity schema="Default" name="entreprise" color="BED3F4" x="448" y="48" />
+		<entity schema="Default" name="experience" color="BED3F4" x="640" y="80" />
 		<entity schema="Default" name="tache" color="BED3F4" x="96" y="608" />
 		<entity schema="Default" name="tache_poste" color="BED3F4" x="96" y="752" />
 		<entity schema="Default" name="services" color="BED3F4" x="272" y="608" />
+		<entity schema="Default" name="notation_adresse" color="BED3F4" x="848" y="64" />
 		<entity schema="Default" name="critere_diplome" color="C7F4BE" x="1216" y="48" />
 		<entity schema="Default" name="critere_exp" color="C7F4BE" x="1392" y="48" />
 		<entity schema="Default" name="critere_s_mat" color="C7F4BE" x="1568" y="48" />
@@ -387,9 +387,6 @@
 		<entity schema="Default" name="s_matrimoniale" color="BED3F4" x="496" y="592" />
 		<entity schema="Default" name="candidature" color="BED3F4" x="640" y="256" />
 		<entity schema="Default" name="mission" color="BED3F4" x="928" y="240" />
-		<entity schema="Default" name="entreprise" color="BED3F4" x="320" y="48" />
-		<entity schema="Default" name="experience" color="BED3F4" x="544" y="80" />
-		<entity schema="Default" name="notation_adresse" color="BED3F4" x="784" y="48" />
 		<script name="script_besoin.sql" id="Editor_5a00663" language="SQL" >
 			<string><![CDATA[CREATE ROLE gestion LOGIN PASSWORD gestion;
 CREATE DATABASE gestion_rh;
