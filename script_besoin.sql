@@ -31,7 +31,7 @@ CREATE TABLE services(
     id_service SERIAL PRIMARY KEY,
     nom_service VARCHAR(30),
     id_dept INT REFERENCES departement(id_dept),
-    id_domaine REFERENCES domaine(id_domaine)  
+    id_domaine INT REFERENCES domaine(id_domaine)  
 );
 
 CREATE TABLE poste(
@@ -98,7 +98,7 @@ CREATE TABLE notation_exp(
 
 CREATE TABLE notation_s_mat(
     id_note_s_mat SERIAL PRIMARY KEY,
-    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_matrimo),
     id_besoin INT REFERENCES besoin(id_besoin),
     note INT DEFAULT 0
 );
@@ -137,7 +137,7 @@ CREATE TABLE critere_exp(
 
 CREATE TABLE critere_s_mat(
     id_cri_s_mat SERIAL PRIMARY KEY,
-    id_s_matrimo INT REFERENCES s_matrimoniale(id_s_matrimo),
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
     id_besoin INT REFERENCES besoin(id_besoin),
     coeff INT DEFAULT 1
 );
@@ -175,6 +175,12 @@ CREATE TABLE personne(
     date_naissance DATE
 );
 
+CREATE TABLE employe(
+    id_emp SERIAL PRIMARY KEY,
+    id_personne INT REFERENCES personne(id_personne),
+    date_embauche DATE
+);
+
 CREATE TABLE candidature(
     id_candidature SERIAL PRIMARY KEY,
     date_candidature DATE,
@@ -184,25 +190,25 @@ CREATE TABLE candidature(
 
 -------------------------------------------------------------
 
---CREATE TABLE mission(
---    id_mission SERIAL PRIMARY KEY,
---    descriptions TEXT NOT NULL
---);
+CREATE TABLE mission(
+    id_mission SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
 
---CREATE TABLE mission_poste(
---    id_poste INT REFERENCES poste(id_poste),
---    id_mission INT REFERENCES mission(id_mission)
---);
+CREATE TABLE mission_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_mission INT REFERENCES mission(id_mission)
+);
 
---CREATE TABLE tache(
---    id_tache SERIAL PRIMARY KEY,
---    descriptions TEXT NOT NULL
---);
+CREATE TABLE tache(
+    id_tache SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
 
---CREATE TABLE tache_poste(
---    id_poste INT REFERENCES poste(id_poste),
---    id_tache INT REFERENCES tache(id_tache)
---);
+CREATE TABLE tache_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_tache INT REFERENCES tache(id_tache)
+);
 
 ALTER TABLE poste ADDCOLUMN droit DOUBLE PRECISION NOT NULL;
 
@@ -261,17 +267,6 @@ CREATE view v_adresse(
     JOIN quartier ON quartier.id_quartier = adresse.id_quartier
     JOIN ville ON ville.id_ville = quartier.id_ville
 );
-
-insert into entreprise(nom_entreprise) values('entreprise');
-insert into departement(nom_dept,id_entreprise) values('Informatique',1);
-insert into domaine(designation) values('Informatique');
-
-insert into services(nom_service,id_dept,id_domaine) values('Services informatiques',1,1);
-
-insert into poste(id_service,nom_poste,heure_jour) values(1,'Développeur Back End',7);
-insert into poste(id_service,nom_poste,heure_jour) values(1,'Développeur Front End',7);
-insert into poste(id_service,nom_poste,heure_jour) values(1,'Administrateur Système',8);
-insert into poste(id_service,nom_poste,heure_jour) values(1,'Architecte Logiciel',7);
 
 ALTER TABLE poste ADD COLUMN tache_poste TEXT;
 ALTER TABLE poste ADD COLUMN mission TEXT;
