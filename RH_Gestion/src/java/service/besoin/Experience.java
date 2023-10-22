@@ -22,6 +22,8 @@ public class Experience {
     private double note;
     private int coeff;
 
+    public Experience() {}
+
     public int getId() {
         return id;
     }
@@ -87,13 +89,8 @@ public class Experience {
         setId(newId);
     }
     
-    public static Experience[] findAll() {
-        List<Experience> liste = ExperienceDAO.findAll();
-        Experience[] experiences = new Experience[liste.size()];
-        for(int i = 0; i<liste.size(); i++){
-            experiences[i] = liste.get(i);
-        }
-        return experiences;
+    public static Experience[] findAll() throws Exception {
+        return ExperienceDAO.findAll();
     }
     
     public Experience(String idExperience, String coeffExp) {

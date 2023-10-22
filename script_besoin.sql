@@ -184,25 +184,25 @@ CREATE TABLE candidature(
 
 -------------------------------------------------------------
 
-CREATE TABLE mission(
-    id_mission SERIAL PRIMARY KEY,
-    descriptions TEXT NOT NULL
-);
+--CREATE TABLE mission(
+--    id_mission SERIAL PRIMARY KEY,
+--    descriptions TEXT NOT NULL
+--);
 
-CREATE TABLE mission_poste(
-    id_poste INT REFERENCES poste(id_poste),
-    id_mission INT REFERENCES mission(id_mission)
-);
+--CREATE TABLE mission_poste(
+--    id_poste INT REFERENCES poste(id_poste),
+--    id_mission INT REFERENCES mission(id_mission)
+--);
 
-CREATE TABLE tache(
-    id_tache SERIAL PRIMARY KEY,
-    descriptions TEXT NOT NULL
-);
+--CREATE TABLE tache(
+--    id_tache SERIAL PRIMARY KEY,
+--    descriptions TEXT NOT NULL
+--);
 
-CREATE TABLE tache_poste(
-    id_poste INT REFERENCES poste(id_poste),
-    id_tache INT REFERENCES tache(id_tache)
-);
+--CREATE TABLE tache_poste(
+--    id_poste INT REFERENCES poste(id_poste),
+--    id_tache INT REFERENCES tache(id_tache)
+--);
 
 ALTER TABLE poste ADDCOLUMN droit DOUBLE PRECISION NOT NULL;
 
@@ -236,3 +236,42 @@ insert into experience(minimum,maximum,niveau) values(0,0,0),(0,2,1),(2,5,2),(5,
 insert into diplome(niveau,designation) values(0,'Aucun'),(1,'CEPE'),(2,'BEPC'),(3,'Bacc'),(4,'Licence'),(5,'Master'),(6,'Doctorat');
 
 ----------------------------------------------------------------
+CREATE TABLE ville(
+    id_ville SERIAL PRIMARY KEY,
+    nom_ville VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE quartier(
+    id_quartier SERIAL PRIMARY KEY,
+    nom_quartier VARCHAR(20) NOT NULL,
+    id_ville INT REFERENCES ville(id_ville)
+);
+
+CREATE TABLE adresse(
+    id_adresse SERIAL PRIMARY KEY,
+    rue VARCHAR(20) NOT NULL,
+    id_quartier INT REFERENCES quartier(id_quartier),
+    coordonnées GEOMETRY,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION
+);
+
+CREATE view v_adresse(
+    SELECT id_adresse, rue, nom_quartier, nom_ville FROM adresse
+    JOIN quartier ON quartier.id_quartier = adresse.id_quartier
+    JOIN ville ON ville.id_ville = quartier.id_ville
+);
+
+insert into entreprise(nom_entreprise) values('entreprise');
+insert into departement(nom_dept,id_entreprise) values('Informatique',1);
+insert into domaine(designation) values('Informatique');
+
+insert into services(nom_service,id_dept,id_domaine) values('Services informatiques',1,1);
+
+insert into poste(id_service,nom_poste,heure_jour) values(1,'Développeur Back End',7);
+insert into poste(id_service,nom_poste,heure_jour) values(1,'Développeur Front End',7);
+insert into poste(id_service,nom_poste,heure_jour) values(1,'Administrateur Système',8);
+insert into poste(id_service,nom_poste,heure_jour) values(1,'Architecte Logiciel',7);
+
+ALTER TABLE poste ADD COLUMN tache_poste TEXT;
+ALTER TABLE poste ADD COLUMN mission TEXT;

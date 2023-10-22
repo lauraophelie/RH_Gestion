@@ -84,7 +84,7 @@ public class Diplome {
         int newId = Integer.parseInt(id);
         return get(newId);
     }
-    public void save(){
+    public void save() throws Exception{
         DiplomeDAO.save(this);
     }
     public static Diplome[] findAll() throws Exception {

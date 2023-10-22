@@ -7,7 +7,6 @@
 package service.personne;
 
 import dao.personne.CVDAO;
-import java.sql.Date;
 import service.besoin.Diplome;
 import service.besoin.Experience;
 import service.besoin.Nationalite;
