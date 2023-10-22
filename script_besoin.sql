@@ -156,7 +156,7 @@ CREATE TABLE critere_adresse(
 );
 
 ----------------------------------------------
-ALTER TABLE critere_adresse ADDCOLUMN id_besoin INT REFERENCES besoin(id_besoin);
+ALTER TABLE critere_adresse ADD COLUMN id_besoin INT REFERENCES besoin(id_besoin);
 
 CREATE TABLE critere_age(
     id_cri_age SERIAL PRIMARY KEY,
@@ -220,3 +220,53 @@ CREATE TABLE fiche_poste(
     date_debut DATE NOT NULL,
     date_fin DATE DEFAULT NULL
 );
+
+CREATE TABLE cv(
+    id_personne INT REFERENCES personne(id_personne),
+    id_diplome INT REFERENCES diplome(id_diplome),
+    id_exp INT REFERENCES experience(id_exp),
+    id_nat INT REFERENCES nationalite(id_nat),
+    id_s_matrimo INT REFERENCES s_matrimoniale(id_s_matrimo)     
+);
+
+CREATE TABLE employe(
+    id_emp SERIAL PRIMARY KEY,
+    id_personne INT REFERENCES personne(id_personne),
+    date_embauche DATE
+);
+----------------------------------------------------------------
+
+insert into nationalite(niveau,designation) values(1,'Malagasy'),(2,'Autres');
+insert into s_matrimoniale(niveau,designation) values(0,'Célibataire'),(1,'Marié'),(2,'Veuf'),(3,'Divorcé');
+insert into experience(minimum,maximum,niveau) values(0,0,0),(0,2,1),(2,5,2),(5,10,3);
+insert into diplome(niveau,designation) values(0,'Aucun'),(1,'CEPE'),(2,'BEPC'),(3,'Bacc'),(4,'Licence'),(5,'Master'),(6,'Doctorat');
+
+----------------------------------------------------------------
+CREATE TABLE ville(
+    id_ville SERIAL PRIMARY KEY,
+    nom_ville VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE quartier(
+    id_quartier SERIAL PRIMARY KEY,
+    nom_quartier VARCHAR(20) NOT NULL,
+    id_ville INT REFERENCES ville(id_ville)
+);
+
+CREATE TABLE adresse(
+    id_adresse SERIAL PRIMARY KEY,
+    rue VARCHAR(20) NOT NULL,
+    id_quartier INT REFERENCES quartier(id_quartier),
+    coordonnées GEOMETRY,
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION
+);
+
+CREATE view v_adresse(
+    SELECT id_adresse, rue, nom_quartier, nom_ville FROM adresse
+    JOIN quartier ON quartier.id_quartier = adresse.id_quartier
+    JOIN ville ON ville.id_ville = quartier.id_ville
+);
+
+ALTER TABLE poste ADD COLUMN tache_poste TEXT;
+ALTER TABLE poste ADD COLUMN mission TEXT;

@@ -37,6 +37,27 @@ public class SMatrimonialeDAO {
             if(result != null){
                 result.close();
             }
+        }
+        return sMatrimoniale;
+    }
+
+    public static SMatrimoniale[] findAll() {
+        return null;
+    }
+
+    public static void saveCritere(SMatrimoniale sMaritiale, int id) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = Util.connect();
+            statement = connection.prepareStatement("Insert into critere_s_mat(id_s_matrimo,coeff,id_besoin) values(?,?,?)");
+            statement.setInt(2, sMaritiale.getId());
+            statement.setInt(3, sMaritiale.getCoeff());
+            statement.setInt(4, id);
+            statement.executeUpdate();
+        } catch(Exception e){
+            throw e;
+        } finally{
             if(statement != null){
                 statement.close();
             }
@@ -44,11 +65,6 @@ public class SMatrimonialeDAO {
                 connection.close();
             }
         }
-        return sMatrimoniale;
-    }
-
-    public static SMatrimoniale[] findAll() throws Exception{
-        return null;
     }
     
 }

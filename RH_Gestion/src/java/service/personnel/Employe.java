@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service.embauche;
+package service.personnel;
 
+import service.personne.Personne;
 import service.societe.Poste;
 
 /**
