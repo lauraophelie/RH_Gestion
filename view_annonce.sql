@@ -25,6 +25,9 @@ CREATE view v_diplome_exp_mat_by_besoin as (select v_diplome_exp_by_besoin.id_ex
 CREATE view v_annonce as (select v_diplome_exp_mat_by_besoin.id_besoin,v_diplome_exp_mat_by_besoin.id_exp,v_diplome_exp_mat_by_besoin.minimum as exp_min,v_diplome_exp_mat_by_besoin.maximum as exp_max, v_diplome_exp_mat_by_besoin.niveau_experience,v_diplome_exp_mat_by_besoin.niveau_diplome,v_diplome_exp_mat_by_besoin.designation_diplome,v_diplome_exp_mat_by_besoin.niveau_mat,v_diplome_exp_mat_by_besoin.designation_mat,v_poste_service.nom_poste,v_poste_service.nom_service,v_poste_service.date_limite from v_diplome_exp_mat_by_besoin join v_poste_service on v_diplome_exp_mat_by_besoin.id_besoin=v_poste_service.id_besoin );
 
 
+-- view contrat par personne
+CREATE VIEW contrat_personne as (select contrat.id_contrat,personne.id_personne,personne.nom,personne.prenom,personne.date_naissance,personne.CIN,contrat.type_contrat,contrat.salaire_brut,poste.id_poste,poste.nom_poste,poste.heure_jour,poste.mission,contrat.debut,contrat.fin from contrat join personne on personne.id_personne=contrat.id_personne join poste on poste.id_poste=contrat.id_poste);
+
 
 
 
