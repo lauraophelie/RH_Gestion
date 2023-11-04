@@ -50,8 +50,25 @@ public class DiplomeDAO {
         return diplome;
     }
 
-    public static void save(Diplome diplome) {
-        
+    public static void save(Diplome diplome) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = Util.connect();
+            statement = connection.prepareStatement("Insert into Diplome(designation,niveau) values(?,?)");
+            statement.setString(1, diplome.getDésignation());
+            statement.setInt(2, diplome.getNiveau());
+            statement.executeUpdate();
+        } catch(Exception e){
+            throw e;
+        } finally{
+            if(statement != null){
+                statement.close();
+            }
+            if(connection != null){
+                connection.close();
+            }
+        }
     }
 
     public static Diplome[] findAll() throws Exception {
@@ -68,7 +85,7 @@ public class DiplomeDAO {
                 Diplome diplome = new Diplome();
                 diplome.setDésignation(result.getString("designation"));
                 diplome.setNiveau(result.getInt("niveau"));
-                diplome.setId(result.getInt("id"));
+                diplome.setId(result.getInt("id_diplome"));
                 liste.add(diplome);
             }
             Diplome[] diplome = new Diplome[liste.size()];
@@ -89,5 +106,27 @@ public class DiplomeDAO {
             }
         }
         return diplomes;
+    }
+
+    public static void saveCritere(Diplome diplome, int id) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = Util.connect();
+            statement = connection.prepareStatement("Insert into critere_diplome(id_diplome,id_besoin,coeff) values(?,?,?)");
+            statement.setInt(1, diplome.getId());
+            statement.setInt(2, id);
+            statement.setInt(3, diplome.getCoeff());
+            statement.executeUpdate();
+        } catch(Exception e){
+            throw e;
+        } finally{
+            if(statement != null){
+                statement.close();
+            }
+            if(connection != null){
+                connection.close();
+            }
+        }
     }
 }

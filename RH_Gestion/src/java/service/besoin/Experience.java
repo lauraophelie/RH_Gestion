@@ -6,6 +6,7 @@
 package service.besoin;
 
 import dao.besoin.ExperienceDAO;
+import java.util.List;
 
 /**
  *
@@ -19,13 +20,9 @@ public class Experience {
     private int minimum;
     private int maximum;
     private double note;
+    private int coeff;
 
-    public Experience(int id){
-
-    }
-    public Experience(String id){
-        
-    }
+    public Experience() {}
 
     public int getId() {
         return id;
@@ -74,8 +71,32 @@ public class Experience {
     public void setNote(double note) {
         this.note = note;
     }
+        
+    public int getCoeff() {
+        return coeff;
+    }
+
+    public void setCoeff(int coeff) {
+        this.coeff = coeff;
+    }
     
-    public static Experience[] findAll() {
+    public Experience(int id){
+        setId(id);
+    }
+    
+    public Experience(String id){
+        int newId = Integer.parseInt(id);
+        setId(newId);
+    }
+    
+    public static Experience[] findAll() throws Exception {
         return ExperienceDAO.findAll();
+    }
+    
+    public Experience(String idExperience, String coeffExp) {
+        int newId = Integer.parseInt(idExperience);
+        setId(newId);
+        int coeff = Integer.parseInt(coeffExp);
+        setCoeff(coeff);
     }
 }

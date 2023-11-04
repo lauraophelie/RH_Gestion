@@ -12,10 +12,24 @@ import dao.besoin.DiplomeDAO;
  * @author HERINIAINA
  */
 public class Diplome {
+
     private int id;
     private String désignation;
     private int niveau;
     private double note;
+    private int coeff;
+
+    public Diplome(String idDiplome) {
+        int newId = Integer.parseInt(idDiplome);
+        setId(newId);
+    }
+
+    public Diplome(String idDiplome, String coeffDiplome) {
+        int newId = Integer.parseInt(idDiplome);
+        setId(newId);
+        int coeff = Integer.parseInt(coeffDiplome);
+        setCoeff(coeff);
+    }
 
     public int getId() {
         return id;
@@ -49,6 +63,14 @@ public class Diplome {
         this.note = note;
     }
     
+    public int getCoeff() {
+        return coeff;
+    }
+
+    public void setCoeff(int coeff) {
+        this.coeff = coeff;
+    }
+    
     public Diplome(){}
     
     public Diplome(int id){
@@ -62,7 +84,7 @@ public class Diplome {
         int newId = Integer.parseInt(id);
         return get(newId);
     }
-    public void save(){
+    public void save() throws Exception{
         DiplomeDAO.save(this);
     }
     public static Diplome[] findAll() throws Exception {

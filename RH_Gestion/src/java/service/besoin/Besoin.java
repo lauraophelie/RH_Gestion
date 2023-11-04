@@ -5,9 +5,17 @@
  */
 package service.besoin;
 
-import dao.besoin.BesoinDAO;
-import service.societe.Poste;
 import service.societe.Service;
+
+import dao.besoin.AgeDAO;
+import dao.besoin.BesoinDAO;
+import dao.besoin.DiplomeDAO;
+import dao.besoin.ExperienceDAO;
+import dao.besoin.NationaliteDAO;
+import dao.besoin.SMatrimonialeDAO;
+import java.sql.Date;
+import java.util.List;
+import service.societe.Poste;
 
 /**
  *
@@ -24,8 +32,9 @@ public class Besoin {
     private Nationalite nationalite;
     private double volumeTache;
     private Unite unite;
-    private int agemin;
-    private int agemax;
+    private Age age;
+    private Date dateLimite;
+    private int nombre;
 
     public int getId() {
         return id;
@@ -90,21 +99,33 @@ public class Besoin {
     public void setUnite(Unite unite) {
         this.unite = unite;
     }
+
+    public Poste getPoste() {
+        return poste;
+    }
+
+    public void setPoste(Poste poste) {
+        this.poste = poste;
+    }
+
+    public void setDateLimite(Date dateFin) {
+        this.dateLimite = dateFin;
+    }
+    public Date getDateLimite() {
+        return dateLimite;
+    }
+
+    public Age getAge() {
+        return age;
+    }
+
+    public void setAge(Age age) {
+        this.age = age;
+    }
     
-    public int getAgemin() {
-        return agemin;
-    }
-
-    public void setAgemin(int agemin) {
-        this.agemin = agemin;
-    }
-
-    public int getAgemax() {
-        return agemax;
-    }
-
-    public void setAgemax(int agemax) {
-        this.agemax = agemax;
+    private void setDateLimite(String dateFin) {
+        Date newDate = Date.valueOf(dateFin);
+        setDateLimite(newDate);
     }
     
     public Besoin(){}
@@ -113,12 +134,40 @@ public class Besoin {
         setId(id);
     }
     public Besoin(String id){
-        int newId = Integer.parseInt(id);
-        setId(newId);
-    }
-
-    public void save() throws Exception{
-        BesoinDAO.save(this);
+        setId(Integer.parseInt(id));
     }
     
+    public Besoin(SMatrimoniale sMatrimoniale, Nationalite nationalite, Diplome diplome, Experience experience, Age age, String dateFin) {
+        setsMaritiale(sMatrimoniale);
+        setNationalite(nationalite);
+        setDiplome(diplome);
+        setAge(age);
+        setExperience(experience);
+        setDateLimite(dateFin);
+    }
+
+    public void save()throws Exception {
+        DiplomeDAO.saveCritere(this.getDiplome(),this.getId());
+        ExperienceDAO.saveCritere(this.getExperience(),this.getId());
+        NationaliteDAO.saveCritere(this.getNationalite(),this.getId());
+        SMatrimonialeDAO.saveCritere(this.getsMaritiale(),this.getId());
+        AgeDAO.saveCritere(this.getAge(),this.getId());
+        BesoinDAO.save(this);
+    }    
+    
+    public Besoin findById(String id) throws Exception{
+        return BesoinDAO.findById(id);
+    }
+    
+    public List<Besoin> findAll()throws Exception{
+        return BesoinDAO.findAll();
+    }
+    
+    public List<Besoin> findByService(String idService){
+        return BesoinDAO.findByService(idService);
+    }
+    
+    public int getNombre(){
+        return nombre;
+    }
 }

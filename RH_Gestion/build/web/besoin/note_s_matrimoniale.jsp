@@ -27,7 +27,7 @@
 
             <div class="row critere-poste-line">
               <div class="col-lg-6">
-                <input type="text" min="0" class="form-control input-formulaire" value="Célibataire" readonly>
+                <input type="text" min="0" class="form-control input-formulaire" value="Cï¿½libataire" readonly>
               </div>
               <div class="col-lg-6">
                 <input type="number" min="0" class="form-control input-formulaire">
@@ -36,7 +36,7 @@
 
             <div class="row critere-poste-line">
               <div class="col-lg-6">
-                <input type="text" min="0" class="form-control input-formulaire" value="Marié(e)" readonly>
+                <input type="text" min="0" class="form-control input-formulaire" value="Mariï¿½(e)" readonly>
               </div>
               <div class="col-lg-6">
                 <input type="number" min="0" class="form-control input-formulaire">

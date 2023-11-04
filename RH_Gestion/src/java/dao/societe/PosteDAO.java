@@ -5,8 +5,6 @@
  */
 package dao.societe;
 
-import service.societe.Service;
-
 /**
  *
  * @author HERINIAINA

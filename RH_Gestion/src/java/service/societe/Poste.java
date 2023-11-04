@@ -5,6 +5,9 @@
  */
 package service.societe;
 
+import dao.societe.PosteDAO;
+import java.util.List;
+
 /**
  *
  * @author HERINIAINA
@@ -64,6 +67,11 @@ public class Poste {
     public void setTaches(String taches) {
         this.taches = taches;
     }
-
     
+    
+    public static Poste[] findAll(Service service) throws Exception {
+        List<Poste> liste = PosteDAO.findAll(service);
+        Poste[] poste = liste.toArray(new Poste[0]);
+        return poste;
+    }
 }

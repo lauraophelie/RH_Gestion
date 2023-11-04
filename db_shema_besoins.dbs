@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="script_besoin.sql" id="Project_63c5d4" database="PostgreSQL" >
+	<schema name="Default" >
+		<table name="besoin" >
+			<column name="id_besoin" type="serial" jt="4" mandatory="y" />
+			<column name="id_poste" type="int" jt="4" />
+			<column name="nombre" type="int" jt="4" />
+			<column name="date_demande" type="date" jt="91" />
+			<column name="date_limite" type="date" jt="91" />
+			<index name="pk_besoin_id_besoin" unique="PRIMARY_KEY" >
+				<column name="id_besoin" />
+			</index>
+			<fk name="fk_besoin_poste" to_schema="Default" to_table="poste" >
+				<fk_column name="id_poste" pk="id_poste" />
+			</fk>
+		</table>
+		<table name="candidature" >
+			<column name="id_candidature" type="serial" jt="4" mandatory="y" />
+			<column name="date_candidature" type="date" jt="91" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="id_personne" type="int" jt="4" />
+			<index name="pk_candidature_id_candidature" unique="PRIMARY_KEY" >
+				<column name="id_candidature" />
+			</index>
+			<fk name="fk_candidature_personne" to_schema="Default" to_table="personne" >
+				<fk_column name="id_personne" pk="id_personne" />
+			</fk>
+			<fk name="fk_candidature_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="critere_adresse" >
+			<column name="id_cri_adr" type="serial" jt="4" mandatory="y" />
+			<column name="maximum" type="varchar" jt="12" mandatory="y" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_adresse_id_cri_adr" unique="PRIMARY_KEY" >
+				<column name="id_cri_adr" />
+			</index>
+		</table>
+		<table name="critere_age" >
+			<column name="id_cri_age" type="serial" jt="4" mandatory="y" />
+			<column name="minimum" type="int" jt="4" mandatory="y" >
+				<defo>18</defo>
+			</column>
+			<column name="maximum" type="int" jt="4" mandatory="y" >
+				<defo>45</defo>
+			</column>
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_age_id_cri_age" unique="PRIMARY_KEY" >
+				<column name="id_cri_age" />
+			</index>
+			<fk name="fk_critere_age_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="critere_diplome" >
+			<column name="id_cri_dip" type="serial" jt="4" mandatory="y" />
+			<column name="id_diplome" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_diplome_id_cri_dip" unique="PRIMARY_KEY" >
+				<column name="id_cri_dip" />
+			</index>
+			<fk name="fk_critere_diplome_diplome" to_schema="Default" to_table="diplome" >
+				<fk_column name="id_diplome" pk="id_diplome" />
+			</fk>
+			<fk name="fk_critere_diplome_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="critere_exp" >
+			<column name="id_cri_exp" type="serial" jt="4" mandatory="y" />
+			<column name="id_exp" type="int" jt="4" />
+			<column name="id_domaine" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_exp_id_cri_exp" unique="PRIMARY_KEY" >
+				<column name="id_cri_exp" />
+			</index>
+			<fk name="fk_critere_exp_experience" to_schema="Default" to_table="experience" >
+				<fk_column name="id_exp" pk="id_exp" />
+			</fk>
+			<fk name="fk_critere_exp_domaine" to_schema="Default" to_table="domaine" >
+				<fk_column name="id_domaine" pk="id_domaine" />
+			</fk>
+			<fk name="fk_critere_exp_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="critere_nat" >
+			<column name="id_cri_nat" type="serial" jt="4" mandatory="y" />
+			<column name="id_nat" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_nat_id_cri_nat" unique="PRIMARY_KEY" >
+				<column name="id_cri_nat" />
+			</index>
+			<fk name="fk_critere_nat_nationalite" to_schema="Default" to_table="nationalite" >
+				<fk_column name="id_nat" pk="id_nat" />
+			</fk>
+			<fk name="fk_critere_nat_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="critere_s_mat" >
+			<column name="id_cri_s_mat" type="serial" jt="4" mandatory="y" />
+			<column name="id_s_mat" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="coeff" type="int" jt="4" >
+				<defo>1</defo>
+			</column>
+			<index name="pk_critere_s_mat_id_cri_s_mat" unique="PRIMARY_KEY" >
+				<column name="id_cri_s_mat" />
+			</index>
+			<fk name="fk_critere_s_mat_s_matrimoniale" to_schema="Default" to_table="s_matrimoniale" >
+				<fk_column name="id_s_mat" pk="id_s_matrimo" />
+			</fk>
+			<fk name="fk_critere_s_mat_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="departement" >
+			<column name="id_dept" type="serial" jt="4" mandatory="y" />
+			<column name="nom_dept" type="varchar" length="20" jt="12" />
+			<column name="id_entreprise" type="int" jt="4" />
+			<index name="pk_departement_id_dept" unique="PRIMARY_KEY" >
+				<column name="id_dept" />
+			</index>
+			<fk name="fk_departement_entreprise" to_schema="Default" to_table="entreprise" >
+				<fk_column name="id_entreprise" pk="id_entreprise" />
+			</fk>
+		</table>
+		<table name="diplome" >
+			<column name="id_diplome" type="serial" jt="4" mandatory="y" />
+			<column name="niveau" type="int" jt="4" />
+			<column name="designation" type="varchar" length="20" jt="12" />
+			<index name="pk_diplome_id_diplome" unique="PRIMARY_KEY" >
+				<column name="id_diplome" />
+			</index>
+		</table>
+		<table name="domaine" >
+			<column name="id_domaine" type="serial" jt="4" mandatory="y" />
+			<column name="designation" type="varchar" length="20" jt="12" />
+			<index name="pk_domaine_id_domaine" unique="PRIMARY_KEY" >
+				<column name="id_domaine" />
+			</index>
+		</table>
+		<table name="employe" >
+			<column name="id_emp" type="serial" jt="4" mandatory="y" />
+			<column name="id_personne" type="int" jt="4" />
+			<column name="date_embauche" type="date" jt="91" />
+			<index name="pk_employe_id_emp" unique="PRIMARY_KEY" >
+				<column name="id_emp" />
+			</index>
+			<index name="unq_employe_id_personne" unique="UNIQUE" >
+				<column name="id_personne" />
+			</index>
+			<fk name="fk_employe_personne" to_schema="Default" to_table="personne" >
+				<fk_column name="id_personne" pk="id_personne" />
+			</fk>
+		</table>
+		<table name="entreprise" >
+			<column name="id_entreprise" type="serial" jt="4" mandatory="y" />
+			<column name="nom_entreprise" type="varchar" length="20" jt="12" />
+			<column name="NIF" type="varchar" length="12" jt="12" />
+			<column name="STAT" type="varchar" length="12" jt="12" />
+			<column name="adresse" type="varchar" length="30" jt="12" />
+			<column name="localisation" type="varchar" jt="12" />
+			<index name="pk_entreprise_id_entreprise" unique="PRIMARY_KEY" >
+				<column name="id_entreprise" />
+			</index>
+		</table>
+		<table name="experience" >
+			<column name="id_exp" type="serial" jt="4" mandatory="y" />
+			<column name="minimum" type="int" jt="4" mandatory="y" />
+			<column name="maximum" type="int" jt="4" mandatory="y" />
+			<column name="niveau" type="int" jt="4" />
+			<index name="pk_experience_id_exp" unique="PRIMARY_KEY" >
+				<column name="id_exp" />
+			</index>
+		</table>
+		<table name="mission" >
+			<column name="id_mission" type="serial" jt="4" mandatory="y" />
+			<column name="descriptions" type="text" jt="-1" mandatory="y" />
+			<index name="pk_mission_id_mission" unique="PRIMARY_KEY" >
+				<column name="id_mission" />
+			</index>
+		</table>
+		<table name="mission_poste" >
+			<column name="id_poste" type="int" jt="4" />
+			<column name="id_mission" type="int" jt="4" />
+			<fk name="fk_mission_poste_poste" to_schema="Default" to_table="poste" >
+				<fk_column name="id_poste" pk="id_poste" />
+			</fk>
+			<fk name="fk_mission_poste_mission" to_schema="Default" to_table="mission" >
+				<fk_column name="id_mission" pk="id_mission" />
+			</fk>
+		</table>
+		<table name="nationalite" >
+			<column name="id_nat" type="serial" jt="4" mandatory="y" />
+			<column name="niveau" type="int" jt="4" />
+			<column name="designation" type="varchar" length="20" jt="12" />
+			<index name="pk_nationalite_id_nat" unique="PRIMARY_KEY" >
+				<column name="id_nat" />
+			</index>
+		</table>
+		<table name="notation_adresse" >
+			<column name="id_note_adr" type="serial" jt="4" mandatory="y" />
+			<column name="minimum" type="int" jt="4" mandatory="y" />
+			<column name="maximum" type="int" jt="4" mandatory="y" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="note" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_notation_adresse_id_note_adr" unique="PRIMARY_KEY" >
+				<column name="id_note_adr" />
+			</index>
+			<fk name="fk_notation_adresse_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="notation_diplome" >
+			<column name="id_note_dip" type="serial" jt="4" mandatory="y" />
+			<column name="id_diplome" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="note" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_notation_diplome_id_note_dip" unique="PRIMARY_KEY" >
+				<column name="id_note_dip" />
+			</index>
+			<fk name="fk_notation_diplome_diplome" to_schema="Default" to_table="diplome" >
+				<fk_column name="id_diplome" pk="id_diplome" />
+			</fk>
+			<fk name="fk_notation_diplome_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="notation_exp" >
+			<column name="id_note_exp" type="serial" jt="4" mandatory="y" />
+			<column name="id_exp" type="int" jt="4" />
+			<column name="id_domaine" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="note" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_notation_exp_id_note_exp" unique="PRIMARY_KEY" >
+				<column name="id_note_exp" />
+			</index>
+			<fk name="fk_notation_exp_domaine" to_schema="Default" to_table="domaine" >
+				<fk_column name="id_domaine" pk="id_domaine" />
+			</fk>
+			<fk name="fk_notation_exp_experience" to_schema="Default" to_table="experience" >
+				<fk_column name="id_exp" pk="id_exp" />
+			</fk>
+			<fk name="fk_notation_exp_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="notation_nat" >
+			<column name="id_note_nat" type="serial" jt="4" mandatory="y" />
+			<column name="id_nat" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="note" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_notation_nat_id_note_nat" unique="PRIMARY_KEY" >
+				<column name="id_note_nat" />
+			</index>
+			<fk name="fk_notation_nat_nationalite" to_schema="Default" to_table="nationalite" >
+				<fk_column name="id_nat" pk="id_nat" />
+			</fk>
+			<fk name="fk_notation_nat_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="notation_s_mat" >
+			<column name="id_note_s_mat" type="serial" jt="4" mandatory="y" />
+			<column name="id_s_mat" type="int" jt="4" />
+			<column name="id_besoin" type="int" jt="4" />
+			<column name="note" type="int" jt="4" >
+				<defo>0</defo>
+			</column>
+			<index name="pk_notation_s_mat_id_note_s_mat" unique="PRIMARY_KEY" >
+				<column name="id_note_s_mat" />
+			</index>
+			<fk name="fk_notation_s_mat_s_matrimoniale" to_schema="Default" to_table="s_matrimoniale" >
+				<fk_column name="id_s_mat" pk="id_s_matrimo" />
+			</fk>
+			<fk name="fk_notation_s_mat_besoin" to_schema="Default" to_table="besoin" >
+				<fk_column name="id_besoin" pk="id_besoin" />
+			</fk>
+		</table>
+		<table name="personne" >
+			<column name="id_personne" type="serial" jt="4" mandatory="y" />
+			<column name="nom" type="varchar" length="30" jt="12" />
+			<column name="prenom" type="varchar" length="30" jt="12" />
+			<column name="date_naissance" type="date" jt="91" />
+			<index name="pk_personne_id_personne" unique="PRIMARY_KEY" >
+				<column name="id_personne" />
+			</index>
+		</table>
+		<table name="poste" >
+			<column name="id_poste" type="serial" jt="4" mandatory="y" />
+			<column name="id_service" type="int" jt="4" />
+			<column name="nom_poste" type="varchar" length="20" jt="12" />
+			<column name="heure_jour" type="int" jt="4" />
+			<index name="pk_poste_id_poste" unique="PRIMARY_KEY" >
+				<column name="id_poste" />
+			</index>
+		</table>
+		<table name="s_matrimoniale" >
+			<column name="id_s_matrimo" type="serial" jt="4" mandatory="y" />
+			<column name="niveau" type="int" jt="4" />
+			<column name="designation" type="varchar" length="20" jt="12" />
+			<index name="pk_s_matrimoniale_id_s_matrimo" unique="PRIMARY_KEY" >
+				<column name="id_s_matrimo" />
+			</index>
+		</table>
+		<table name="services" >
+			<column name="id_service" type="serial" jt="4" mandatory="y" />
+			<column name="nom_service" type="varchar" length="30" jt="12" />
+			<column name="id_dept" type="int" jt="4" />
+			<column name="id_domaine" type="int" jt="4" />
+			<index name="pk_services_id_service" unique="PRIMARY_KEY" >
+				<column name="id_service" />
+			</index>
+			<fk name="fk_services_departement" to_schema="Default" to_table="departement" >
+				<fk_column name="id_dept" pk="id_dept" />
+			</fk>
+			<fk name="fk_services_domaine" to_schema="Default" to_table="domaine" >
+				<fk_column name="id_domaine" pk="id_domaine" />
+			</fk>
+		</table>
+		<table name="tache" >
+			<column name="id_tache" type="serial" jt="4" mandatory="y" />
+			<column name="descriptions" type="text" jt="-1" mandatory="y" />
+			<index name="pk_tache_id_tache" unique="PRIMARY_KEY" >
+				<column name="id_tache" />
+			</index>
+		</table>
+		<table name="tache_poste" >
+			<column name="id_poste" type="int" jt="4" />
+			<column name="id_tache" type="int" jt="4" />
+			<fk name="fk_tache_poste_tache" to_schema="Default" to_table="tache" >
+				<fk_column name="id_tache" pk="id_tache" />
+			</fk>
+			<fk name="fk_tache_poste_poste" to_schema="Default" to_table="poste" >
+				<fk_column name="id_poste" pk="id_poste" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Parsed Script Layout" id="Layout_1391303" show_relation="columns" >
+		<entity schema="Default" name="tache" color="BED3F4" x="96" y="608" />
+		<entity schema="Default" name="tache_poste" color="BED3F4" x="96" y="752" />
+		<entity schema="Default" name="services" color="BED3F4" x="272" y="608" />
+		<entity schema="Default" name="critere_diplome" color="C7F4BE" x="1216" y="48" />
+		<entity schema="Default" name="critere_exp" color="C7F4BE" x="1392" y="48" />
+		<entity schema="Default" name="critere_s_mat" color="C7F4BE" x="1568" y="48" />
+		<entity schema="Default" name="critere_nat" color="C7F4BE" x="1392" y="240" />
+		<entity schema="Default" name="critere_age" color="C7F4BE" x="1568" y="240" />
+		<entity schema="Default" name="notation_diplome" color="F4DDBE" x="1216" y="528" />
+		<entity schema="Default" name="notation_exp" color="F4DDBE" x="1392" y="528" />
+		<entity schema="Default" name="notation_s_mat" color="F4DDBE" x="1568" y="528" />
+		<entity schema="Default" name="notation_nat" color="F4DDBE" x="1568" y="720" />
+		<entity schema="Default" name="mission_poste" color="BED3F4" x="1024" y="80" />
+		<entity schema="Default" name="nationalite" color="BED3F4" x="960" y="416" />
+		<entity schema="Default" name="critere_adresse" color="BED3F4" x="720" y="432" />
+		<entity schema="Default" name="personne" color="BED3F4" x="896" y="592" />
+		<entity schema="Default" name="poste" color="BED3F4" x="736" y="592" />
+		<entity schema="Default" name="employe" color="BED3F4" x="80" y="80" />
+		<entity schema="Default" name="domaine" color="BED3F4" x="64" y="240" />
+		<entity schema="Default" name="diplome" color="BED3F4" x="48" y="384" />
+		<entity schema="Default" name="besoin" color="BED3F4" x="320" y="256" />
+		<entity schema="Default" name="departement" color="BED3F4" x="480" y="432" />
+		<entity schema="Default" name="s_matrimoniale" color="BED3F4" x="496" y="592" />
+		<entity schema="Default" name="candidature" color="BED3F4" x="640" y="256" />
+		<entity schema="Default" name="mission" color="BED3F4" x="928" y="240" />
+		<entity schema="Default" name="entreprise" color="BED3F4" x="320" y="48" />
+		<entity schema="Default" name="experience" color="BED3F4" x="544" y="80" />
+		<entity schema="Default" name="notation_adresse" color="BED3F4" x="784" y="48" />
+		<script name="script_besoin.sql" id="Editor_5a00663" language="SQL" >
+			<string><![CDATA[CREATE ROLE gestion LOGIN PASSWORD gestion;
+CREATE DATABASE gestion_rh;
+ALTER DATABASE gestion_rh OWNER TO gestion;
+
+\c gestion_rh gestion
+CREATE EXTENSION postgis;
+
+--------------------- Details entreprise -----------------------
+
+CREATE TABLE entreprise(
+    id_entreprise SERIAL PRIMARY KEY,
+    nom_entreprise VARCHAR(20),
+    NIF VARCHAR(12),
+    STAT VARCHAR(12),
+    adresse VARCHAR(30),
+    localisation GEOMETRY
+);
+
+CREATE TABLE departement(
+    id_dept SERIAL PRIMARY KEY,
+    nom_dept VARCHAR(20),
+    id_entreprise INT REFERENCES entreprise(id_entreprise)
+);
+
+CREATE TABLE domaine(
+    id_domaine SERIAL PRIMARY KEY,
+    designation VARCHAR(20)
+);
+
+CREATE TABLE services(
+    id_service SERIAL PRIMARY KEY,
+    nom_service VARCHAR(30),
+    id_dept INT REFERENCES departement(id_dept),
+    id_domaine INT REFERENCES domaine(id_domaine)  
+);
+
+CREATE TABLE poste(
+    id_poste SERIAL PRIMARY KEY,
+    id_service INT REFERENCES services(id_service),
+    nom_poste VARCHAR(20),
+    heure_jour INT
+);
+
+-------------------------- Besoin poste -------------------------
+
+CREATE TABLE besoin(
+    id_besoin SERIAL PRIMARY KEY,
+    id_poste INT REFERENCES poste(id_poste),
+    nombre INT,
+    date_demande DATE,
+    date_limite DATE
+);
+
+-------------------------- Requis --------------------------------
+
+CREATE TABLE diplome(
+    id_diplome SERIAL PRIMARY KEY,
+    niveau INT,
+    designation VARCHAR(20)
+);
+
+CREATE TABLE nationalite(
+    id_nat SERIAL PRIMARY KEY,
+    niveau INT,
+    designation VARCHAR(20)
+);
+
+CREATE TABLE s_matrimoniale(
+    id_s_matrimo SERIAL PRIMARY KEY,
+    niveau INT,
+    designation VARCHAR(20)
+);
+
+CREATE TABLE experience(
+    id_exp SERIAL PRIMARY KEY,
+    minimum INT NOT NULL,
+    maximum INT NOT NULL,
+    niveau INT
+);
+
+----------------------------- Notation ------------------------
+
+CREATE TABLE notation_nat(
+    id_note_nat SERIAL PRIMARY KEY,
+    id_nat INT REFERENCES nationalite(id_nat),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    note INT DEFAULT 0
+);
+
+-- mety expérience @ poste équivalent
+CREATE TABLE notation_exp(
+    id_note_exp SERIAL PRIMARY KEY,
+    id_exp INT REFERENCES experience(id_exp),
+    id_domaine INT REFERENCES domaine(id_domaine),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    note INT DEFAULT 0
+);
+
+CREATE TABLE notation_s_mat(
+    id_note_s_mat SERIAL PRIMARY KEY,
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_matrimo),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    note INT DEFAULT 0
+);
+
+CREATE TABLE notation_diplome(
+    id_note_dip SERIAL PRIMARY KEY,
+    id_diplome INT REFERENCES diplome(id_diplome),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    note INT DEFAULT 0
+);
+
+CREATE TABLE notation_adresse(
+    id_note_adr SERIAL PRIMARY KEY,
+    minimum INT NOT NULL,
+    maximum INT NOT NULL,
+    id_besoin INT REFERENCES besoin(id_besoin),
+    note INT DEFAULT 0
+);
+
+------------------------- Critère ----------------------------
+
+CREATE TABLE critere_nat(
+    id_cri_nat SERIAL PRIMARY KEY,
+    id_nat INT REFERENCES nationalite(id_nat),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+CREATE TABLE critere_exp(
+    id_cri_exp SERIAL PRIMARY KEY,
+    id_exp INT REFERENCES experience(id_exp),
+    id_domaine INT REFERENCES domaine(id_domaine),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+CREATE TABLE critere_s_mat(
+    id_cri_s_mat SERIAL PRIMARY KEY,
+    id_s_mat INT REFERENCES s_matrimoniale(id_s_mat),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+CREATE TABLE critere_diplome(
+    id_cri_dip SERIAL PRIMARY KEY,
+    id_diplome INT REFERENCES diplome(id_diplome),
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+CREATE TABLE critere_adresse(
+    id_cri_adr SERIAL PRIMARY KEY,
+    maximum DOUBLE PRECISION NOT NULL, -- distance max ipetrahan'ny olona
+    coeff INT DEFAULT 1
+);
+
+----------------------------------------------
+ALTER TABLE critere_adresse ADDCOLUMN id_besoin INT REFERENCES besoin(id_besoin);
+
+CREATE TABLE critere_age(
+    id_cri_age SERIAL PRIMARY KEY,
+    minimum INT NOT NULL DEFAULT 18,
+    maximum INT NOT NULL DEFAULT 45,
+    id_besoin INT REFERENCES besoin(id_besoin),
+    coeff INT DEFAULT 1
+);
+
+----------------------------------------------
+
+CREATE TABLE personne(
+    id_personne SERIAL PRIMARY KEY,
+    nom VARCHAR(30),
+    prenom VARCHAR(30),
+    date_naissance DATE
+);
+
+CREATE TABLE employe(
+    id_emp SERIAL PRIMARY KEY,
+    id_personne INT REFERENCES personne(id_personne),
+    date_embauche DATE
+);
+
+CREATE TABLE candidature(
+    id_candidature SERIAL PRIMARY KEY,
+    date_candidature DATE,
+    id_besoin INT REFERENCES besoin(id_besoin),
+    id_personne INT REFERENCES personne(id_personne)
+);
+
+-------------------------------------------------------------
+
+CREATE TABLE mission(
+    id_mission SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE mission_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_mission INT REFERENCES mission(id_mission)
+);
+
+CREATE TABLE tache(
+    id_tache SERIAL PRIMARY KEY,
+    descriptions TEXT NOT NULL
+);
+
+CREATE TABLE tache_poste(
+    id_poste INT REFERENCES poste(id_poste),
+    id_tache INT REFERENCES tache(id_tache)
+);
+
+ALTER TABLE poste ADDCOLUMN droit DOUBLE PRECISION NOT NULL;
+
+-------------------------------------------------------------
+
+CREATE TABLE fiche_poste(
+    id_fiche_poste SERIAL PRIMARY KEY,
+    id_poste REFERENCES poste(id_poste),
+    date_debut DATE NOT NULL,
+    date_fin DATE DEFAULT NULL
+);]]></string>
+		</script>
+	</layout>
+</project>

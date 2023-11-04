@@ -5,17 +5,19 @@
  */
 package controller.besoin;
 
-import dao.besoin.DiplomeDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import service.besoin.Diplome;
 import service.besoin.Experience;
 import service.besoin.Nationalite;
 import service.besoin.SMatrimoniale;
+import service.societe.Poste;
+import service.societe.Service;
 
 /**
  *
@@ -40,13 +42,22 @@ public class CreateBesoinServlet extends HttpServlet {
             SMatrimoniale[] sMatrimoniale = SMatrimoniale.findAll();
             Nationalite[] nationalite = Nationalite.findAll();
 
-            request.setAttribute("diplomes", diplome);
-            request.setAttribute("experiences", experience);
-            request.setAttribute("smatrimoniales", sMatrimoniale);
-            request.setAttribute("nationalites", nationalite);
+            Service service = new Service();
+            service.setId(1);
             
-            RequestDispatcher dispat = request.getRequestDispatcher("besoin/ajout_besoin.jsp");
-            dispat.forward(request,response);
+            Poste[] poste = Poste.findAll(service);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("diplomes", diplome);
+            session.setAttribute("experiences", experience);
+            session.setAttribute("smatrimoniales", sMatrimoniale);
+            session.setAttribute("nationalites", nationalite);
+            session.setAttribute("postes", poste);
+            
+            /*RequestDispatcher dispat = request.getRequestDispatcher("template/page.jsp?page=besoin/ajout_besoin");
+            dispat.forward(request,response);*/
+
+            response.sendRedirect("template/page.jsp?page=besoin/ajout_besoin");
         }
         catch(Exception e){
             System.out.println("Error : " + e);

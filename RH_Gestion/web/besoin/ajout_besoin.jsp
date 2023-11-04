@@ -3,7 +3,19 @@
     Created on : 29 sept. 2023, 09:20:14
     Author     : HERINIAINA
 --%>
+<%@page import="service.besoin.Diplome"%>
+<%@page import="service.besoin.Experience"%>
+<%@page import="service.besoin.Nationalite"%>
+<%@page import="service.besoin.SMatrimoniale"%>
+<%@page import="service.societe.Poste"%>
 
+<%
+    Diplome[] diplomes = (Diplome[]) session.getAttribute("diplomes");
+    Experience[] experiences = (Experience[]) session.getAttribute("experiences");
+    SMatrimoniale[] smatrimoniale = (SMatrimoniale[]) session.getAttribute("smatrimoniales");
+    Nationalite[] nationalite = (Nationalite[]) session.getAttribute("nationalites");
+    Poste[] postes = (Poste[]) session.getAttribute("postes");
+%>
 <div class="card">
     <div class="card-body">
       <h2 class="card-title fw-semibold mb-4" id="main-title">
@@ -18,18 +30,11 @@
                 Titre du poste
               </label>
               <select name="poste" id="poste-input" class="form-control input-formulaire">
-                  <option value="1">
-                    Développeur Back End
+                  <%for (Diplome diplome : diplomes) { %>
+                  <option value="<% out.print(diplome.getId()); %>">
+                      <% out.print(diplome.getDésignation());%>
                   </option>
-                  <option value="2">
-                    Développeur Front End
-                  </option>
-                  <option value="3">
-                    Administrateur Système
-                  </option>
-                  <option value="4">
-                    Architecte Logiciel
-                  </option>
+                  <% } %>
               </select>
             </div>
             <!----------------Volume horaire-->
